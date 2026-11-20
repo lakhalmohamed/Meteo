@@ -1,0 +1,78 @@
+{
+  "name": "MeteoLive — Live Weather",
+  "short_name": "MeteoLive",
+  "description": "Real-time live weather experience powered by Open-Meteo with canvas particle simulations, time machine scrubbers, and world exploration.",
+  "start_url": "/",
+  "scope": "/",
+  "display": "standalone",
+  "display_override": ["window-controls-overlay", "standalone", "minimal-ui"],
+  "orientation": "any",
+  "background_color": "#070a12",
+  "theme_color": "#0b0f19",
+  "lang": "en",
+  "dir": "ltr",
+  "categories": ["weather", "utilities", "education"],
+  "icons": [
+    {
+      "src": "/assets/icons/favicon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any"
+    },
+    {
+      "src": "/assets/icons/icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "/assets/icons/icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "/assets/icons/icon-maskable.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "maskable"
+    }
+  ],
+  "shortcuts": [
+    {
+      "name": "Search City",
+      "short_name": "Search",
+      "description": "Find weather for any city worldwide",
+      "url": "/?action=search",
+      "icons": [{ "src": "/assets/icons/icon-192.png", "sizes": "192x192" }]
+    },
+    {
+      "name": "World Explorer",
+      "short_name": "Explorer",
+      "description": "Interactive global weather telemetry map",
+      "url": "/?action=explorer",
+      "icons": [{ "src": "/assets/icons/icon-192.png", "sizes": "192x192" }]
+    },
+    {
+      "name": "Compare Cities",
+      "short_name": "Compare",
+      "description": "Side-by-side weather comparison",
+      "url": "/?action=compare",
+      "icons": [{ "src": "/assets/icons/icon-192.png", "sizes": "192x192" }]
+    },
+    {
+      "name": "Current Location",
+      "short_name": "Nearby",
+      "description": "View weather for your current GPS location",
+      "url": "/?action=geolocate",
+      "icons": [{ "src": "/assets/icons/icon-192.png", "sizes": "192x192" }]
+    },
+    {
+      "name": "Favorites",
+      "short_name": "Saved",
+      "description": "View your saved favorite cities",
+      "url": "/?action=favorites",
+      "icons": [{ "src": "/assets/icons/icon-192.png", "sizes": "192x192" }]
+    }
+  ]
+}

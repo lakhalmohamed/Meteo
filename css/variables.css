@@ -1,0 +1,104 @@
+:root {
+  /* ========================================================
+     AETHER DESIGN TOKENS
+     ======================================================== */
+  
+  /* Fonts */
+  --font-main: -apple-system, BlinkMacSystemFont, 'SF Pro Display', 'Inter', 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+  --font-mono: 'SF Mono', 'JetBrains Mono', 'Fira Code', Menlo, Consolas, monospace;
+
+  /* Base Dark Palette */
+  --bg-dark-deep: #05070c;
+  --bg-dark-base: #090d16;
+  --bg-dark-surface: #101624;
+  --text-primary: #f8fafc;
+  --text-secondary: #94a3b8;
+  --text-muted: #64748b;
+  --text-accent: #38bdf8;
+}
+
+/* ========================================================
+   LIGHT THEME OVERRIDES ([data-mode="light"])
+   ======================================================== */
+[data-mode="light"] {
+  --bg-dark-deep: #e8eef7;
+  --bg-dark-base: #f1f5fb;
+  --bg-dark-surface: #ffffff;
+  --text-primary: #0f172a;
+  --text-secondary: #334155;
+  --text-muted: #64748b;
+  --text-accent: #0284c7;
+
+  --glass-bg: rgba(255, 255, 255, 0.65);
+  --glass-bg-hover: rgba(255, 255, 255, 0.82);
+  --glass-bg-active: rgba(255, 255, 255, 0.94);
+  --glass-border: rgba(15, 23, 42, 0.08);
+  --glass-border-hover: rgba(15, 23, 42, 0.18);
+  --glass-border-active: rgba(2, 132, 199, 0.35);
+  --glass-shadow: 0 10px 30px rgba(15, 23, 42, 0.07);
+  --glass-shadow-glow: 0 12px 35px -8px rgba(2, 132, 199, 0.25);
+}
+
+:root {
+
+  /* Dynamic Weather Theme Overrides (Defaults to Clear Night) */
+  --theme-bg-gradient: radial-gradient(circle at 50% 0%, #151d38 0%, #0a0d18 55%, #05070c 100%);
+  --theme-primary: #38bdf8;
+  --theme-primary-glow: rgba(56, 189, 248, 0.4);
+  --theme-secondary: #818cf8;
+  --theme-accent: #c084fc;
+  --theme-ambient-glow: rgba(56, 189, 248, 0.15);
+
+  /* Glassmorphism System */
+  --glass-bg: rgba(16, 24, 40, 0.55);
+  --glass-bg-hover: rgba(22, 33, 56, 0.7);
+  --glass-bg-active: rgba(30, 45, 78, 0.85);
+  --glass-border: rgba(255, 255, 255, 0.08);
+  --glass-border-hover: rgba(255, 255, 255, 0.18);
+  --glass-border-active: rgba(56, 189, 248, 0.4);
+  --glass-blur: blur(20px) saturate(180%);
+  --glass-blur-sm: blur(12px) saturate(160%);
+  --glass-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.45);
+  --glass-shadow-glow: 0 12px 40px -10px var(--theme-primary-glow);
+
+  /* Metrics / Semantic Colors */
+  --color-uv-low: #10b981;
+  --color-uv-moderate: #f59e0b;
+  --color-uv-high: #f97316;
+  --color-uv-veryhigh: #ef4444;
+  --color-uv-extreme: #a855f7;
+
+  --color-temp-cold: #38bdf8;
+  --color-temp-mild: #34d399;
+  --color-temp-warm: #fbbf24;
+  --color-temp-hot: #f87171;
+
+  --color-success: #10b981;
+  --color-warning: #f59e0b;
+  --color-danger: #ef4444;
+  --color-info: #0ea5e9;
+
+  /* Layout & Sizing */
+  --radius-xs: 6px;
+  --radius-sm: 10px;
+  --radius-md: 16px;
+  --radius-lg: 24px;
+  --radius-xl: 32px;
+  --radius-full: 9999px;
+
+  --max-width-app: 1380px;
+
+  /* Transitions & Curves */
+  --transition-fast: 150ms cubic-bezier(0.4, 0, 0.2, 1);
+  --transition-normal: 280ms cubic-bezier(0.16, 1, 0.3, 1);
+  --transition-slow: 600ms cubic-bezier(0.16, 1, 0.3, 1);
+  --transition-atmospheric: 1400ms cubic-bezier(0.22, 1, 0.36, 1);
+
+  /* Elevation */
+  --z-canvas: 0;
+  --z-content: 10;
+  --z-header: 100;
+  --z-modal-backdrop: 200;
+  --z-modal: 210;
+  --z-toast: 300;
+}

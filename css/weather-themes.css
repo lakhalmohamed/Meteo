@@ -1,0 +1,284 @@
+/* ========================================================
+   AETHER DYNAMIC WEATHER THEMES
+   Smoothly applied via data-theme on document root
+   ======================================================== */
+
+/* 1. Clear Day / Sunny */
+[data-theme="clear-day"] {
+  --theme-bg-gradient: radial-gradient(circle at 60% 0%, #3a7bd5 0%, #1e3c72 45%, #0f172a 100%);
+  --theme-primary: #f59e0b;
+  --theme-primary-glow: rgba(245, 158, 11, 0.45);
+  --theme-secondary: #fbbf24;
+  --theme-accent: #38bdf8;
+  --theme-ambient-glow: rgba(251, 191, 36, 0.2);
+  --glass-bg: rgba(15, 23, 42, 0.5);
+  --glass-border: rgba(254, 240, 138, 0.15);
+  --glass-border-hover: rgba(254, 240, 138, 0.35);
+}
+
+/* 2. Clear Night */
+[data-theme="clear-night"] {
+  --theme-bg-gradient: radial-gradient(circle at 50% 0%, #171d3d 0%, #0c1024 50%, #04060d 100%);
+  --theme-primary: #818cf8;
+  --theme-primary-glow: rgba(129, 140, 248, 0.4);
+  --theme-secondary: #c084fc;
+  --theme-accent: #38bdf8;
+  --theme-ambient-glow: rgba(129, 140, 248, 0.18);
+  --glass-bg: rgba(12, 16, 32, 0.58);
+  --glass-border: rgba(165, 180, 252, 0.12);
+  --glass-border-hover: rgba(165, 180, 252, 0.3);
+}
+
+/* 3. Partly Cloudy (Day) */
+[data-theme="partly-cloudy-day"] {
+  --theme-bg-gradient: radial-gradient(circle at 50% 0%, #2563eb 0%, #1e3a8a 40%, #090d16 100%);
+  --theme-primary: #60a5fa;
+  --theme-primary-glow: rgba(96, 165, 250, 0.4);
+  --theme-secondary: #fbbf24;
+  --theme-accent: #93c5fd;
+  --theme-ambient-glow: rgba(96, 165, 250, 0.16);
+  --glass-bg: rgba(15, 23, 42, 0.55);
+  --glass-border: rgba(147, 197, 253, 0.15);
+  --glass-border-hover: rgba(147, 197, 253, 0.35);
+}
+
+/* 4. Overcast / Cloudy */
+[data-theme="cloudy"] {
+  --theme-bg-gradient: radial-gradient(circle at 50% 0%, #334155 0%, #1e293b 50%, #0a0f1d 100%);
+  --theme-primary: #94a3b8;
+  --theme-primary-glow: rgba(148, 163, 184, 0.35);
+  --theme-secondary: #64748b;
+  --theme-accent: #38bdf8;
+  --theme-ambient-glow: rgba(148, 163, 184, 0.15);
+  --glass-bg: rgba(15, 23, 42, 0.62);
+  --glass-border: rgba(203, 213, 225, 0.12);
+  --glass-border-hover: rgba(203, 213, 225, 0.28);
+}
+
+/* 5. Rain & Drizzle */
+[data-theme="rain"] {
+  --theme-bg-gradient: radial-gradient(circle at 50% 0%, #1e3a5f 0%, #0f233a 50%, #060e18 100%);
+  --theme-primary: #38bdf8;
+  --theme-primary-glow: rgba(56, 189, 248, 0.45);
+  --theme-secondary: #0ea5e9;
+  --theme-accent: #7dd3fc;
+  --theme-ambient-glow: rgba(56, 189, 248, 0.22);
+  --glass-bg: rgba(10, 20, 36, 0.62);
+  --glass-border: rgba(56, 189, 248, 0.16);
+  --glass-border-hover: rgba(56, 189, 248, 0.4);
+}
+
+/* 6. Thunderstorm */
+[data-theme="thunderstorm"] {
+  --theme-bg-gradient: radial-gradient(circle at 50% 0%, #2e1065 0%, #1e1b4b 35%, #050510 100%);
+  --theme-primary: #a855f7;
+  --theme-primary-glow: rgba(168, 85, 247, 0.55);
+  --theme-secondary: #c084fc;
+  --theme-accent: #38bdf8;
+  --theme-ambient-glow: rgba(168, 85, 247, 0.25);
+  --glass-bg: rgba(18, 12, 38, 0.68);
+  --glass-border: rgba(192, 132, 252, 0.2);
+  --glass-border-hover: rgba(192, 132, 252, 0.45);
+}
+
+/* 7. Snow */
+[data-theme="snow"] {
+  --theme-bg-gradient: radial-gradient(circle at 50% 0%, #1e293b 0%, #0f172a 45%, #080c14 100%);
+  --theme-primary: #e0f2fe;
+  --theme-primary-glow: rgba(224, 242, 254, 0.45);
+  --theme-secondary: #7dd3fc;
+  --theme-accent: #a5f3fc;
+  --theme-ambient-glow: rgba(224, 242, 254, 0.2);
+  --glass-bg: rgba(15, 23, 42, 0.6);
+  --glass-border: rgba(224, 242, 254, 0.18);
+  --glass-border-hover: rgba(224, 242, 254, 0.4);
+}
+
+/* 8. Fog & Mist */
+[data-theme="fog"] {
+  --theme-bg-gradient: radial-gradient(circle at 50% 0%, #334155 0%, #1e293b 50%, #0b0f19 100%);
+  --theme-primary: #cbd5e1;
+  --theme-primary-glow: rgba(203, 213, 225, 0.35);
+  --theme-secondary: #94a3b8;
+  --theme-accent: #64748b;
+  --theme-ambient-glow: rgba(203, 213, 225, 0.15);
+  --glass-bg: rgba(20, 27, 43, 0.6);
+  --glass-border: rgba(203, 213, 225, 0.14);
+  --glass-border-hover: rgba(203, 213, 225, 0.3);
+}
+
+/* 9. Sunset & Twilight */
+[data-theme="sunset"] {
+  --theme-bg-gradient: radial-gradient(circle at 50% 0%, #9f1239 0%, #4c0519 35%, #0f0714 100%);
+  --theme-primary: #fb7185;
+  --theme-primary-glow: rgba(251, 113, 133, 0.5);
+  --theme-secondary: #f43f5e;
+  --theme-accent: #f97316;
+  --theme-ambient-glow: rgba(251, 113, 133, 0.25);
+  --glass-bg: rgba(25, 12, 22, 0.64);
+  --glass-border: rgba(251, 113, 133, 0.18);
+  --glass-border-hover: rgba(251, 113, 133, 0.4);
+}
+
+/* Global Transition on Body & App Wrapper */
+body {
+  background: var(--bg-dark-deep);
+  color: var(--text-primary);
+  transition: background 0.4s ease, color 0.4s ease;
+}
+
+.aether-bg-overlay {
+  position: fixed;
+  inset: 0;
+  background: var(--theme-bg-gradient);
+  z-index: var(--z-canvas);
+  pointer-events: none;
+  transition: opacity 1.4s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+/* ========================================================
+   LIGHT MODE WEATHER THEME OVERRIDES ([data-mode="light"])
+   ======================================================== */
+
+[data-mode="light"][data-theme="clear-day"] {
+  --theme-bg-gradient: radial-gradient(circle at 60% 0%, #dbeafe 0%, #bfdbfe 45%, #e8eef7 100%);
+  --theme-primary: #d97706;
+  --theme-primary-glow: rgba(217, 119, 6, 0.3);
+  --theme-secondary: #f59e0b;
+  --theme-accent: #0284c7;
+  --theme-ambient-glow: rgba(217, 119, 6, 0.15);
+  --glass-bg: rgba(255, 255, 255, 0.7);
+  --glass-border: rgba(217, 119, 6, 0.18);
+  --glass-border-hover: rgba(217, 119, 6, 0.35);
+}
+
+[data-mode="light"][data-theme="clear-night"] {
+  --theme-bg-gradient: radial-gradient(circle at 50% 0%, #e0e7ff 0%, #c7d2fe 45%, #e8eef7 100%);
+  --theme-primary: #6366f1;
+  --theme-primary-glow: rgba(99, 102, 241, 0.3);
+  --theme-secondary: #8b5cf6;
+  --theme-accent: #0284c7;
+  --theme-ambient-glow: rgba(99, 102, 241, 0.14);
+  --glass-bg: rgba(255, 255, 255, 0.72);
+  --glass-border: rgba(99, 102, 241, 0.16);
+  --glass-border-hover: rgba(99, 102, 241, 0.35);
+}
+
+[data-mode="light"][data-theme="partly-cloudy-day"] {
+  --theme-bg-gradient: radial-gradient(circle at 50% 0%, #e0f2fe 0%, #bae6fd 45%, #e8eef7 100%);
+  --theme-primary: #0284c7;
+  --theme-primary-glow: rgba(2, 132, 199, 0.3);
+  --theme-secondary: #f59e0b;
+  --theme-accent: #38bdf8;
+  --glass-bg: rgba(255, 255, 255, 0.7);
+  --glass-border: rgba(2, 132, 199, 0.16);
+}
+
+[data-mode="light"][data-theme="cloudy"] {
+  --theme-bg-gradient: radial-gradient(circle at 50% 0%, #f1f5f9 0%, #e2e8f0 45%, #cbd5e1 100%);
+  --theme-primary: #475569;
+  --theme-primary-glow: rgba(71, 85, 105, 0.25);
+  --theme-secondary: #64748b;
+  --theme-accent: #0284c7;
+  --glass-bg: rgba(255, 255, 255, 0.72);
+  --glass-border: rgba(71, 85, 105, 0.16);
+}
+
+[data-mode="light"][data-theme="rain"] {
+  --theme-bg-gradient: radial-gradient(circle at 50% 0%, #bae6fd 0%, #7dd3fc 45%, #e0f2fe 100%);
+  --theme-primary: #0284c7;
+  --theme-primary-glow: rgba(2, 132, 199, 0.35);
+  --theme-secondary: #0369a1;
+  --theme-accent: #38bdf8;
+  --glass-bg: rgba(255, 255, 255, 0.72);
+  --glass-border: rgba(2, 132, 199, 0.18);
+}
+
+[data-mode="light"][data-theme="thunderstorm"] {
+  --theme-bg-gradient: radial-gradient(circle at 50% 0%, #ede9fe 0%, #ddd6fe 45%, #c4b5fd 100%);
+  --theme-primary: #7c3aed;
+  --theme-primary-glow: rgba(124, 58, 237, 0.35);
+  --theme-secondary: #6d28d9;
+  --theme-accent: #0284c7;
+  --glass-bg: rgba(255, 255, 255, 0.75);
+  --glass-border: rgba(124, 58, 237, 0.2);
+}
+
+[data-mode="light"][data-theme="snow"] {
+  --theme-bg-gradient: radial-gradient(circle at 50% 0%, #f0fdfa 0%, #ccfbf1 45%, #f8fafc 100%);
+  --theme-primary: #0d9488;
+  --theme-primary-glow: rgba(13, 148, 136, 0.3);
+  --theme-secondary: #0284c7;
+  --theme-accent: #14b8a6;
+  --glass-bg: rgba(255, 255, 255, 0.75);
+  --glass-border: rgba(13, 148, 136, 0.18);
+}
+
+[data-mode="light"][data-theme="fog"] {
+  --theme-bg-gradient: radial-gradient(circle at 50% 0%, #f8fafc 0%, #f1f5f9 45%, #e2e8f0 100%);
+  --theme-primary: #475569;
+  --theme-primary-glow: rgba(71, 85, 105, 0.25);
+  --glass-bg: rgba(255, 255, 255, 0.75);
+  --glass-border: rgba(71, 85, 105, 0.15);
+}
+
+[data-mode="light"][data-theme="sunset"] {
+  --theme-bg-gradient: radial-gradient(circle at 50% 0%, #ffe4e6 0%, #fecdd3 45%, #fed7aa 100%);
+  --theme-primary: #e11d48;
+  --theme-primary-glow: rgba(225, 29, 72, 0.35);
+  --theme-secondary: #ea580c;
+  --theme-accent: #db2777;
+  --glass-bg: rgba(255, 255, 255, 0.72);
+  --glass-border: rgba(225, 29, 72, 0.2);
+}
+
+/* Light mode specific component adjustments */
+[data-mode="light"] .aether-header {
+  background: rgba(255, 255, 255, 0.78);
+  border-bottom: 1px solid rgba(15, 23, 42, 0.08);
+}
+
+[data-mode="light"] .brand-title {
+  background: linear-gradient(120deg, #0f172a 40%, var(--theme-primary) 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+[data-mode="light"] .hero-temp-number {
+  background: linear-gradient(180deg, #0f172a 40%, #334155 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+[data-mode="light"] .location-name,
+[data-mode="light"] .detail-large-val,
+[data-mode="light"] .snapshot-val,
+[data-mode="light"] .favorites-title,
+[data-mode="light"] .comparison-city-name,
+[data-mode="light"] .comp-temp-val,
+[data-mode="light"] .result-city-name {
+  color: #0f172a !important;
+}
+
+[data-mode="light"] .search-dialog-box,
+[data-mode="light"] .favorites-drawer-panel,
+[data-mode="light"] .world-explorer-dialog,
+[data-mode="light"] .comparison-dialog,
+[data-mode="light"] .settings-dialog {
+  background: rgba(255, 255, 255, 0.94);
+  border-color: rgba(15, 23, 42, 0.12);
+  color: #0f172a;
+}
+
+[data-mode="light"] .search-text-input {
+  color: #0f172a;
+}
+
+[data-mode="light"] .soundscape-popover {
+  background: rgba(255, 255, 255, 0.88);
+  border-color: rgba(15, 23, 42, 0.12);
+}
+
+[data-mode="light"] #weather-canvas {
+  opacity: 0.65;
+}

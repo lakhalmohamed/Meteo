@@ -1,0 +1,22 @@
+{
+  "name": "meteolive-weather",
+  "version": "1.0.0",
+  "description": "MeteoLive — A Live Progressive Web Application Weather Experience",
+  "main": "server.js",
+  "type": "module",
+  "scripts": {
+    "start": "node server.js",
+    "dev": "node server.js"
+  },
+  "keywords": [
+    "weather",
+    "pwa",
+    "spa",
+    "open-meteo",
+    "canvas",
+    "glassmorphism",
+    "web-audio"
+  ],
+  "author": "MeteoLive Team",
+  "license": "MIT"
+}

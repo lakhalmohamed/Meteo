@@ -1,0 +1,317 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="clear-night">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+  <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+  
+  <title>MeteoLive — Live Weather Experience</title>
+  <meta name="description" content="Real-time live weather visualization and forecast powered by Open-Meteo with atmospheric canvas effects and progressive web application architecture." />
+  <meta name="keywords" content="weather, forecast, open-meteo, pwa, spa, atmospheric, canvas, visualizer, meteorology" />
+  <meta name="theme-color" content="#0b0f19" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+  <meta name="apple-mobile-web-app-title" content="MeteoLive" />
+
+  <!-- Icons and Manifest -->
+  <link rel="icon" type="image/svg+xml" href="/assets/icons/favicon.svg" />
+  <link rel="apple-touch-icon" href="/assets/icons/apple-touch-icon.png" />
+  <link rel="manifest" href="/manifest.webmanifest" />
+
+  <!-- Preconnect to Open-Meteo APIs for fast DNS and TLS -->
+  <link rel="preconnect" href="https://api.open-meteo.com" crossorigin />
+  <link rel="preconnect" href="https://geocoding-api.open-meteo.com" crossorigin />
+
+  <!-- CSS Design System -->
+  <link rel="stylesheet" href="/css/variables.css" />
+  <link rel="stylesheet" href="/css/weather-themes.css" />
+  <link rel="stylesheet" href="/css/base.css" />
+  <link rel="stylesheet" href="/css/components.css" />
+</head>
+<body>
+  <!-- Dynamic Atmospheric Canvas & Lighting Overlay -->
+  <canvas id="weather-canvas" aria-hidden="true"></canvas>
+  <div class="lightning-flash-overlay" id="lightning-flash-overlay" aria-hidden="true"></div>
+  <div class="aether-bg-overlay" aria-hidden="true"></div>
+
+  <!-- Main Application Shell -->
+  <div class="aether-shell">
+    
+    <!-- Top Global Header -->
+    <header class="aether-header">
+      <div class="header-container">
+        
+        <!-- Brand Identity -->
+        <a class="brand-link" href="/" aria-label="MeteoLive Home">
+          <div class="brand-glyph">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <circle cx="12" cy="12" r="5" />
+              <path d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42" />
+            </svg>
+          </div>
+          <div class="brand-title-wrap">
+            <span class="brand-title">MeteoLive</span>
+            <span class="brand-subtitle">Live Weather Intelligence</span>
+          </div>
+        </a>
+
+        <!-- Search Bar Trigger Button -->
+        <button class="search-trigger-btn" id="header-search-btn" aria-label="Search city or location">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="width:16px;height:16px;">
+            <circle cx="11" cy="11" r="8"/>
+            <line x1="21" y1="21" x2="16.65" y2="16.65"/>
+          </svg>
+          <span>Search cities worldwide...</span>
+          <kbd class="search-shortcut-kbd">Ctrl K</kbd>
+        </button>
+
+        <!-- Header Actions: Geolocation, Favorites, Units, PWA Install -->
+        <div class="header-actions">
+          
+          <!-- Locate GPS Button -->
+          <button class="action-icon-btn" id="header-locate-btn" title="Use current GPS location" aria-label="Locate me">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <circle cx="12" cy="12" r="7"/>
+              <polyline points="12 9 12 12 13.5 13.5"/>
+              <path d="M12 2v3M12 19v3M2 12h3M19 12h3"/>
+            </svg>
+          </button>
+
+          <!-- World Weather Explorer Button -->
+          <button class="action-icon-btn" id="header-explorer-btn" title="World Weather Explorer (Interactive Map)" aria-label="Open world map explorer">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <circle cx="12" cy="12" r="10"/>
+              <line x1="2" y1="12" x2="22" y2="12"/>
+              <path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/>
+            </svg>
+          </button>
+
+          <!-- Favorites Drawer Toggle -->
+          <button class="action-icon-btn" id="header-favorites-btn" title="Saved cities" aria-label="Open saved favorites">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/>
+            </svg>
+          </button>
+
+          <!-- Settings Button -->
+          <button class="action-icon-btn" id="header-settings-btn" title="Settings" aria-label="Open settings" type="button" onclick="document.getElementById('settings-modal-backdrop').classList.add('is-open')">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <circle cx="12" cy="12" r="3"/>
+              <path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82-1.82V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"/>
+            </svg>
+          </button>
+
+          <!-- Unit Selector (°C / °F) -->
+          <div class="unit-toggle-pill" role="group" aria-label="Temperature unit selection">
+            <button class="unit-btn active" id="unit-celsius-btn" aria-label="Celsius">°C</button>
+            <button class="unit-btn" id="unit-fahrenheit-btn" aria-label="Fahrenheit">°F</button>
+          </div>
+
+          <!-- PWA Install Button (revealed on supported platforms) -->
+          <button class="pwa-install-btn" id="header-pwa-install-btn" aria-label="Install AETHER as application">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="width:16px;height:16px;">
+              <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/>
+              <polyline points="7 10 12 15 17 10"/>
+              <line x1="12" y1="15" x2="12" y2="3"/>
+            </svg>
+            <span>Install</span>
+          </button>
+
+        </div>
+      </div>
+    </header>
+
+    <!-- Main Dynamic Weather Content -->
+    <main class="aether-main-content">
+      
+      <!-- Offline Banner Notification -->
+      <aside class="offline-banner" id="offline-notification-banner" role="status">
+        <div class="offline-info">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M1 1l22 22"/>
+            <path d="M16.72 11.06A10.94 10.94 0 0 1 19 12.55"/>
+            <path d="M5 12.55a10.94 10.94 0 0 1 5.17-2.39"/>
+            <path d="M10.71 5.05A16 16 0 0 1 22.58 9"/>
+            <path d="M1.42 9a15.91 15.91 0 0 1 4.7-2.88"/>
+            <path d="M8.53 16.11a6 6 0 0 1 6.95 0"/>
+            <line x1="12" y1="20" x2="12.01" y2="20"/>
+          </svg>
+          <span id="offline-banner-desc">You are currently offline. Displaying cached weather telemetry.</span>
+        </div>
+        <button class="offline-retry-btn" id="offline-retry-btn">Reconnect</button>
+      </aside>
+
+      <!-- 1. Hero Main Weather Container -->
+      <section id="hero-weather-container" aria-label="Current Weather Details">
+        <div class="glass-panel skeleton" style="height: 280px; width: 100%;"></div>
+      </section>
+
+      <!-- 2. Weather Time Machine (Interactive 24h Telemetry Scrubber) -->
+      <div id="time-machine-container"></div>
+
+      <!-- 3. Hourly Forecast Horizontal Timeline Container -->
+      <div id="hourly-forecast-container">
+        <div class="glass-panel skeleton" style="height: 140px; width: 100%;"></div>
+      </div>
+
+      <!-- 3. Interactive 24-Hour Forecast Chart -->
+      <section class="glass-panel chart-panel" aria-label="24-Hour Weather Progression Chart">
+        <div class="chart-header">
+          <div class="section-title">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M3 3v18h18"/>
+              <path d="M18.7 8l-5.1 5.2-2.8-2.7L7 14.3"/>
+            </svg>
+            24-Hour Telemetry Chart
+          </div>
+
+          <div class="chart-tabs" role="tablist">
+            <button class="chart-tab-btn active" data-tab="temp" role="tab">Temperature</button>
+            <button class="chart-tab-btn" data-tab="rain" role="tab">Precipitation %</button>
+            <button class="chart-tab-btn" data-tab="wind" role="tab">Wind Speed</button>
+          </div>
+        </div>
+
+        <div class="chart-container">
+          <canvas id="forecast-chart-canvas"></canvas>
+          <div class="chart-tooltip" id="chart-tooltip"></div>
+        </div>
+      </section>
+
+      <!-- 4. Two-Column Layout: 7-Day Forecast & 8 Weather Details Grid -->
+      <div class="forecast-grid-layout">
+        
+        <!-- 7-Day Daily Forecast Column -->
+        <section id="daily-forecast-container" aria-label="7-Day Extended Forecast">
+          <div class="glass-panel skeleton" style="height: 480px; width: 100%;"></div>
+        </section>
+
+        <!-- 8 Dedicated Weather Detail Cards -->
+        <section id="weather-details-container" aria-label="Atmospheric Metrics and Environment Details">
+          <div class="weather-details-grid">
+            <div class="glass-panel skeleton" style="height: 175px;"></div>
+            <div class="glass-panel skeleton" style="height: 175px;"></div>
+            <div class="glass-panel skeleton" style="height: 175px;"></div>
+            <div class="glass-panel skeleton" style="height: 175px;"></div>
+            <div class="glass-panel skeleton" style="height: 175px;"></div>
+            <div class="glass-panel skeleton" style="height: 175px;"></div>
+            <div class="glass-panel skeleton" style="height: 175px;"></div>
+            <div class="glass-panel skeleton" style="height: 175px;"></div>
+          </div>
+        </section>
+
+      </div>
+
+      <!-- 5. Advanced Weather Intelligence & Insights -->
+      <div id="weather-insights-container"></div>
+
+    </main>
+
+    <!-- Floating Procedural Audio Soundscape Controls -->
+    <div class="soundscape-popover" id="soundscape-popover">
+      <button class="soundscape-toggle-btn" id="soundscape-toggle-btn" title="Toggle procedural atmospheric soundscape">
+        <div class="audio-bars-anim">
+          <span class="audio-bar"></span>
+          <span class="audio-bar"></span>
+          <span class="audio-bar"></span>
+        </div>
+        <span>Ambience</span>
+      </button>
+      <input type="range" class="soundscape-slider" id="soundscape-volume-slider" min="0" max="1" step="0.05" value="0.45" title="Ambience volume" aria-label="Ambience volume" />
+    </div>
+
+  </div>
+
+  <!-- Search Modal & Command Palette Dialog -->
+  <div class="modal-backdrop" id="search-modal-backdrop" aria-hidden="true"></div>
+
+  <!-- Favorites Drawer Slide-Over Sheet -->
+  <div class="favorites-drawer-backdrop" id="favorites-drawer-backdrop" aria-hidden="true"></div>
+
+  <!-- World Explorer Modal -->
+  <div class="modal-backdrop" id="world-explorer-backdrop" aria-hidden="true"></div>
+
+  <!-- Settings Modal -->
+  <div class="modal-backdrop" id="settings-modal-backdrop" aria-hidden="true" onclick="if(event.target === this) this.classList.remove('is-open')">
+    <div class="settings-dialog" role="dialog" aria-modal="true" aria-label="Settings">
+      <div class="settings-header">
+        <div class="settings-title-wrap">
+          <div class="section-title">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <circle cx="12" cy="12" r="3"/>
+              <path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82-1.82V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"/>
+            </svg>
+            Settings
+          </div>
+          <span class="settings-subtitle">Personalize appearance and language</span>
+        </div>
+        <button class="modal-close-btn" onclick="document.getElementById('settings-modal-backdrop').classList.remove('is-open')" title="Close">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="width:20px;height:20px;">
+            <line x1="18" y1="6" x2="6" y2="18"/>
+            <line x1="6" y1="6" x2="18" y2="18"/>
+          </svg>
+        </button>
+      </div>
+      <div class="settings-content-body">
+        <div class="settings-section">
+          <div class="settings-category-header">
+            <div class="category-icon-tag">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M12 2.69l5.66 5.66a8 8 0 1 1-11.31 0z"/>
+              </svg>
+            </div>
+            <div class="category-title-group">
+              <h3 class="category-title">Appearance</h3>
+              <span class="category-desc">Select visual theme</span>
+            </div>
+          </div>
+          <div class="theme-options-grid">
+            <div class="theme-choice-card" onclick="document.documentElement.setAttribute('data-mode', 'dark'); localStorage.setItem('themePreference', 'dark')">
+              <div class="theme-preview-box preview-dark">
+                <div class="preview-mini-header"></div>
+                <div class="preview-mini-sun"></div>
+                <div class="preview-mini-chart"></div>
+              </div>
+              <div class="theme-choice-info">
+                <div class="theme-name-row">
+                  <span class="theme-choice-name">Dark</span>
+                </div>
+              </div>
+            </div>
+            <div class="theme-choice-card" onclick="document.documentElement.setAttribute('data-mode', 'light'); localStorage.setItem('themePreference', 'light')">
+              <div class="theme-preview-box preview-light">
+                <div class="preview-mini-header light"></div>
+                <div class="preview-mini-sun light"></div>
+                <div class="preview-mini-chart light"></div>
+              </div>
+              <div class="theme-choice-info">
+                <div class="theme-name-row">
+                  <span class="theme-choice-name">Light</span>
+                </div>
+              </div>
+            </div>
+            <div class="theme-choice-card" onclick="localStorage.setItem('themePreference', 'system'); location.reload()">
+              <div class="theme-preview-box preview-system">
+                <div class="preview-split-half dark"></div>
+                <div class="preview-split-half light"></div>
+                <div class="preview-system-badge">AUTO</div>
+              </div>
+              <div class="theme-choice-info">
+                <div class="theme-name-row">
+                  <span class="theme-choice-name">System</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="settings-footer">
+        <span class="settings-save-note">Preferences saved automatically</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- SPA Module Entry Point -->
+  <script type="module" src="/js/app.js"></script>
+</body>
+</html>
