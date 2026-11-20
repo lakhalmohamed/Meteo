@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # 🌌 MeteoLive — A Live Weather Experience
 
 > **MeteoLive** is a living, cinematic weather web application and Progressive Web Application (PWA) built with vanilla HTML5, modern CSS3, and ES6+ JavaScript. Designed as a flagship academic and commercial-grade product, it unites real-time meteorological telemetry from **Open-Meteo** with an interactive **Canvas particle physics engine**, **modern glassmorphism**, **procedural Web Audio soundscapes**, a **Weather Time Machine**, a **World Weather Explorer**, and **deterministic weather intelligence**.
@@ -150,3 +151,6 @@ npm start
 node server.js
 ```
 Then navigate to `http://localhost:3000` in any modern web browser.
+=======
+# Meteo
+>>>>>>> 01695ccade536f66f9811335b6172d7691abb8f6
